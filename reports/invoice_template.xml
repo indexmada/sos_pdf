@@ -73,18 +73,23 @@
                                 </div>
                                 <div class="col-auto col-6 mw-100 mb-2"
                                     style="border: 2px solid black; border-radius: 15px; padding: 5px;">
-                                    <p>Doit : <strong>KA019 - CLINIQUE MAHAJANGA</strong></p>
-                                    <p>NIF : 4001796504</p>
-                                    <p>STAT : 86204412014000982</p>
-                                    <p>RC : </p>
-                                    <p>CIF : 0136237/DGI-K DU 19/06/23</p>
+                                    <p>Doit : <strong><t t-esc="doc.partner_id.name"/></strong></p>
+                                    <p>NIF : <t t-esc="doc.partner_id.nif"/></p>
+                                    <p>STAT : <t t-esc="doc.partner_id.stat"/></p>
+                                    <p>RC : <t t-esc="doc.partner_id.rcs"/></p>
+                                    <p>CIF : 
+                                        <t t-if="doc.partner_id.code_fisc"> 
+                                            <t t-esc="doc.partner_id.code_fisc"/> DU 
+                                            <t t-esc="doc.partner_id.date_code_fisc" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
+                                        </t>
+                                    </p>
                                     <p style="text-align: center;"> *** ASSUJETI A LA TVA ***</p>
-                                    <p>LOT 17 LA CARRIERE MANGARIVOTRA SECT 8</p>
-                                    <p>401 MAHAJANGA</p>
+                                    <p><t t-esc="doc.partner_id.street"/></p>
+                                    <p><t t-esc="doc.partner_id.street2"/></p>
                                 </div>
                             </div>
 
-                            <div id="greatest_div" class="row mt-4 mb-4">
+                            <div id="greatest_div" class="row mt-4 mb-4" style="height: 50px; margin-top: 0px;">
                                 <div class="col-auto col-4 mw-100 mb-2">
                                 </div>
                                 <div class="col-auto col-4 mw-100 mb-2">
@@ -121,7 +126,7 @@
                                 </div>
                             </div>
                             
-                            <table style="border-collapse: collapse; border: 1px solid black; min-height: 200px; width: 100%;">
+                            <table style="border-collapse: collapse; border: 1px solid black; width: 100%;">
                                 <thead style="display: table-row-group">
                                     <tr>
                                         <th style="border: 1px solid black; padding: 10px;">Designation</th>
@@ -164,7 +169,7 @@
                                                     <td style="padding: 8px;">
                                                         <p>
                                                             <span style="text-decoration: underline;">Arrêtée à la somme de</span> : 
-                                                            <span style="text-align: left; font-weight: bold; font-size: 14pt;">
+                                                            <span style="text-align: left; font-weight: bold; font-size: 11pt;">
                                                                 <t t-esc="doc.number_to_words()"/> 
                                                                 <t t-esc="doc.currency_id.currency_unit_label"/>
                                                             </span>
@@ -243,43 +248,54 @@
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: 0px;">
-                                    <div class="col-auto col-12 mw-100 mb-2"
-                                        style="
-                                        border: 1px solid black;
-                                        font-family: Arial, sans-serif;
-                                        padding-top: 5px;
-                                        padding-left: 5px;
-                                        font-weight: bold;
-                                        font-size: 10px;">
-                                        Conditions générales : <br/>
-                                        - Toutes les réclamations concernant vos commandes doivent se faire dans les 24h après réception de vos colis. Au-delà de ce délai, elles seront considérées comme irrécouvrables.<br/>
-                                        - Les colis doivent impérativement être retournés dans un délai de 30 jours pour la désinsectisation.<br/>
-                                        - Les articles facturés et livrés restent la propriété de Maexi jusqu'au paiement intégral de la facture.<br/>
-                                        - Toute facture impayée après la date d'échéance entraînera des pénalités.
-                                        <div style="
-                                            text-align: center;
-                                            margin: 10px 0;">
-                                            *** !!! Seuls les comptes bancaires et mobile money au nom de MAEXI-TRADING sont validés pour recevoir les paiements. !!! ***
+                                    <div class="col-auto col-12 mw-100 mb-2" style="border: 1px solid black;">
+                                        <div class="row" style="border: 1px solid black;">
+                                            <table class="table table-borderless">
+                                                <tr style="page-break-inside: avoid;">
+                                                    <td style="
+                                                        padding: 8px;
+                                                        font-family: Arial, sans-serif;
+                                                        padding-top: 5px;
+                                                        padding-left: 5px;
+                                                        font-weight: bold;
+                                                        font-size: 10px;">
+                                                        <p>
+                                                        Conditions générales : <br/>
+                                                        - Toutes les réclamations concernant vos commandes doivent se faire dans les 24h après réception de vos colis. Au-delà de ce délai, elles seront considérées comme irrécouvrables.<br/>
+                                                        - Les colis doivent impérativement être retournés dans un délai de 30 jours pour la désinsectisation.<br/>
+                                                        - Les articles facturés et livrés restent la propriété de Maexi jusqu'au paiement intégral de la facture.<br/>
+                                                        - Toute facture impayée après la date d'échéance entraînera des pénalités.
+                                                        </p>
+                                                        <p style="
+                                                            text-align: center;
+                                                            margin: 10px 0;">
+                                                            *** !!! Seuls les comptes bancaires et mobile money au nom de MAEXI-TRADING sont validés pour recevoir les paiements. !!! ***
+                                                        </p>
+                                                        <p style="                                    
+                                                            text-align: center;">
+                                                            MVOLA : 038 65 295 41 - ORANGE MONEY : 233274
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                        <div style="                                    
-                                            margin-bottom: 20px;
-                                            text-align: center;">
-                                            MVOLA : 038 65 295 41 - ORANGE MONEY : 233274
+                                        <div class="row" style="border: 1px solid black;">
+                                            <table class="table table-borderless">
+                                                <tr style="page-break-inside: avoid;">
+                                                    <td style="padding: 8px;">
+                                                        <p style="
+                                                            font-family: Arial, sans-serif;
+                                                            font-size: 10px;
+                                                            padding-top: 5px;
+                                                            text-align: center;">
+                                                        Lot Près IVL 240 Ter - ANOSYVAHAKA - Antananarivo 101 - Bureaux ouverts de 7h45 à 16h15 du Lundi au Vendredi<br/>
+                                                        TEL : 033 57 044 973 / 033 50 202 62 - Email : maexi-trading@maexitrading.com<br/>
+                                                        RCS : 2003 B 00556 - STAT : 46496 11 2003 01 00 11 - NIF : 300 000 5552 - CIF : 0241275 DGIK du 03/07/23
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: 0px;">
-                                    <div class="col-auto col-12 mw-100 mb-2"
-                                        style="
-                                        border: 1px solid black;
-                                        font-family: Arial, sans-serif;
-                                        font-size: 10px;
-                                        padding-top: 5px;
-                                        padding-bottom: 15px;
-                                        text-align: center;">
-                                        Lot Près IVL 240 Ter - ANOSYVAHAKA - Antananarivo 101 - Bureaux ouverts de 7h45 à 16h15 du Lundi au Vendredi<br/>
-                                        TEL : 033 57 044 973 / 033 50 202 62 - Email : maexi-trading@maexitrading.com<br/>
-                                        RCS : 2003 B 00556 - STAT : 46496 11 2003 01 00 11 - NIF : 300 000 5552 - CIF : 0241275 DGIK du 03/07/23
                                     </div>
                                 </div>
                             </div>
