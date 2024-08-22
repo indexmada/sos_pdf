@@ -36,18 +36,18 @@
                     <div class="page" style="font-size: 10pt;">
                         <t t-if="doc.move_type == 'out_invoice'">
                             <!-- Render the invoice content -->
-                            <div id="greatest_div" class="row" style="height: 200px;">
-                                <div id="greater_div" class="col-auto col-8 mw-100 mb-2">
-                                    <div id="great_div" class="row mt-4 mb-4" style="border: 2px solid black; border-radius: 15px; margin-right: 10px; text-align: center;">
+                            <div class="row" style="height: 200px;">
+                                <div class="col-auto col-8 mw-100 mb-2">
+                                    <div class="row mt-4 mb-4" style="border: 2px solid black; border-radius: 15px; margin-right: 10px; text-align: center;">
                                         <h2 id="invoice_header">FACTURE</h2>
                                     </div>
                                     <div class="row mt-4 mb-4">
-                                        <div id="simple_div" class="col-auto col-4 mw-50 mb-2">
+                                        <div class="col-auto col-4 mw-50 mb-2">
                                             <div>
                                                 <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" alt="Logo entreprise" style="max-width: 90%;"/>
                                             </div>
                                         </div>
-                                        <div id="simple_div" class="col-auto col-8 mw-100 mb-2">
+                                        <div class="col-auto col-8 mw-100 mb-2">
                                             <p>
                                                 Date : <t t-esc="doc.invoice_date" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/><br/>
                                                 Numero : <span style="padding: 8px; text-align: left; font-weight: bold;"><t t-esc="doc.name"/></span><br/>
@@ -137,39 +137,41 @@
                                 </div>
                             </div>
                             
-                            <table style="border-collapse: collapse; width: 100%; height: 300px;">
-                                <thead>
-                                    <tr>
-                                        <th style="border: 1px solid black; padding: 10px;">Designation</th>
-                                        <th style="border: 1px solid black; padding: 10px;">PU</th>
-                                        <th style="border: 1px solid black; padding: 10px;">QTE</th>
-                                        <th style="border: 1px solid black; padding: 10px;">REM %</th>
-                                        <th style="border: 1px solid black; padding: 10px;">TVA %</th>
-                                        <th style="border: 1px solid black; padding: 10px;">MONTANT TTC</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <t t-foreach="doc.invoice_line_ids" t-as="line">
+                            <div class="row" style="height: 300px;">
+                                <table class="table table-borderless" style="border-collapse: collapse; border-bottom: 1px solid black; width: 100%;">
+                                    <thead>
                                         <tr>
-                                            <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; padding-left: 10px; padding-top: 10px;"><t t-esc="line.name"/></td>
-                                            <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; padding-left: 10px; padding-top: 10px;"><t t-esc="line.price_unit" t-options='{"widget": "float", "precision": 2}'/></td>
-                                            <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; padding-left: 10px; padding-top: 10px;"><t t-esc="line.quantity" t-options='{"widget": "float", "precision": 0}'/></td>
-                                            <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; padding-left: 10px; padding-top: 10px;"><t t-esc="line.discount" t-options='{"widget": "float", "precision": 0}'/></td>
-                                            <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; padding-left: 10px; padding-top: 10px;"><t t-esc="line.tax_ids[0].amount" t-options='{"widget": "float", "precision": 0}'/></td>
-                                            <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; padding-left: 10px; padding-top: 10px;"><t t-esc="line.price_subtotal + (line.price_subtotal * (line.tax_ids[0].amount / 100)) + (line.price_subtotal * (line.discount / 100))" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <th style="border: 1px solid black; padding: 10px;">Designation</th>
+                                            <th style="border: 1px solid black; padding: 10px;">PU</th>
+                                            <th style="border: 1px solid black; padding: 10px;">QTE</th>
+                                            <th style="border: 1px solid black; padding: 10px;">REM %</th>
+                                            <th style="border: 1px solid black; padding: 10px;">TVA %</th>
+                                            <th style="border: 1px solid black; padding: 10px;">MONTANT TTC</th>
                                         </tr>
-                                    </t>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                            <tr>
+                                                <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; padding-left: 10px; padding-top: 10px;"><t t-esc="line.name"/></td>
+                                                <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: right; padding-right: 10px; padding-top: 10px;"><t t-esc="line.price_unit" t-options='{"widget": "float", "precision": 2}'/></td>
+                                                <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: right; padding-right: 10px; padding-top: 10px;"><t t-esc="line.quantity" t-options='{"widget": "float", "precision": 0}'/></td>
+                                                <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: center; padding-left: 10px; padding-top: 10px;"><t t-esc="line.discount" t-options='{"widget": "float", "precision": 0}'/></td>
+                                                <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: center; padding-left: 10px; padding-top: 10px;"><t t-esc="line.tax_ids[0].amount" t-options='{"widget": "float", "precision": 0}'/></td>
+                                                <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: right; padding-right: 10px; padding-top: 10px;"><t t-esc="line.price_subtotal + (line.price_subtotal * (line.tax_ids[0].amount / 100)) + (line.price_subtotal * (line.discount / 100))" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <!-- <div class="col-auto col-12 mw-100 mb-2" style="height: 300px;"> -->
-                                <div class="row" style="max-height: 290px;">
-                                    <div class="col-auto col-6 mw-100 mb-2" style="border-left: 1px solid black; border-bottom: 1px solid black;">
+                                <div class="row" style="height: 290px; margin-bottom: 10px;">
+                                    <div class="col-auto col-8 mw-100 mb-2" style="border-left: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;">
                                         <div class="row" style="border: none;">                                
                                             <table class="table table-borderless">
                                                 <tr>
                                                     <td style="padding: 8px;">
-                                                        <p><span style="text-decoration: underline;">OBS.</span> : <span style="text-transform: uppercase;"><t t-esc="doc.narration"/></span></p>
+                                                        <p><span style="text-decoration: underline; font-style: italic;">OBS.</span> : <span style="text-transform: uppercase;"><t t-esc="doc.narration"/></span></p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -179,15 +181,14 @@
                                                 <tr>
                                                     <td style="padding: 8px;">
                                                         <p>
-                                                            <span style="text-decoration: underline;">Arrêtée à la somme de</span> : 
+                                                            <span style="text-decoration: underline; font-style: italic;">Arrêtée à la somme de</span> : 
                                                             <span style="text-align: left; font-weight: bold; font-size: 10pt;">
                                                                 <t t-esc="doc.number_to_words()"/> 
                                                                 <t t-esc="doc.currency_id.currency_unit_label"/>
                                                             </span>
-                                                            <br/>
                                                         </p>
-                                                        <p style="margin: 0; margin-top: 10px;"><span style="text-decoration: underline;">Mode de paiement</span> : <t t-esc="doc.get_payment_mode()"/></p>
-                                                        <div class="row">
+                                                        <p style="margin: 0; margin-top: 20px;"><span style="text-decoration: underline;">Mode de paiement</span> : <t t-esc="doc.get_payment_mode()"/></p>
+                                                        <div class="row" style="margin-bottom: 0;">
                                                             <div class="col-auto col-6 mw-100 mb-2">
                                                                 <p><span style="text-decoration: underline;">Règlement</span> : <t t-esc="doc.invoice_payment_term_id.name"/></p>
                                                             </div>
@@ -201,7 +202,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-auto col-6 mw-100 mb-2" style="border: 1px solid black; border-top: none;">
+                                    <div class="col-auto col-4 mw-100 mb-2" style="border: 1px solid black;">
                                         <div class="row" style="border: none;">
                                             <table class="table table-borderless" style="text-align: left;">
                                                 <t t-set="current_subtotal" t-value="0"/>
@@ -221,7 +222,7 @@
                                                     
                                                 <tr>
                                                     <th style="padding: 8px;">H.T (non taxable)</th>
-                                                    <td><span t-esc="current_subtotal" t-options='{"widget": "float", "precision": 2}'/></td>
+                                                    <td style="text-align: right; padding-right: 10px;"><span t-esc="current_subtotal" t-options='{"widget": "float", "precision": 2}'/></td>
                                                 </tr>
                                                 <tr>
                                                     <th style="padding: 8px;">+ H.T</th>
@@ -229,11 +230,11 @@
                                                 </tr>
                                                 <tr>
                                                     <th style="padding: 8px;">- REMISE</th>
-                                                    <td><span t-esc="current_discount_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                                                    <td style="text-align: right; padding-right: 10px;"><span t-esc="current_discount_total" t-options='{"widget": "float", "precision": 2}'/></td>
                                                 </tr>
                                                 <tr>
                                                     <th style="padding: 8px;">= NET H.T.</th>
-                                                    <td><span t-esc="current_net_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                                                    <td style="text-align: right; padding-right: 10px;"><span t-esc="current_net_total" t-options='{"widget": "float", "precision": 2}'/></td>
                                                 </tr>
                                                 <tr>
                                                     <th style="padding: 8px;">TVA (<span t-esc="current_tax"/>%)</th>
@@ -247,8 +248,8 @@
                                                 <!--Tax totals-->
                                                 <t t-set="tax_totals" t-value="doc.tax_totals"/>
                                                 <tr>
-                                                    <th style="padding: 8px;">TTC</th>
-                                                    <td style="padding: 8px; text-align: left; font-weight: bold; font-size: 14pt;">
+                                                    <th style="padding: 8px; text-align: left;">TTC</th>
+                                                    <td style="padding: 8px; text-align: right; font-weight: bold; font-size: 14pt;">
                                                         <!-- <span t-esc="tax_totals['formatted_amount_total_rounded']" t-if="'formatted_amount_total_rounded' in tax_totals"/>
                                                         <span t-esc="tax_totals['formatted_amount_total']" t-else=""/> -->
                                                         <t t-esc="doc.amount_total"/> <t t-esc="doc.currency_id.name"/>
@@ -259,7 +260,7 @@
                                     </div>
                                 </div>
                             <!-- </div> -->
-                            <div class="row" style="max-height: 230px;">
+                            <div class="row" style="height: 230px;">
                                 <div class="col-auto col-12" style="border: 1px solid black;">
                                     <div class="row" style="border: 1px solid black; height: 155px;">
                                         <table class="table table-borderless">
@@ -281,10 +282,16 @@
                                                     </p>
                                                     <p style="
                                                         text-align: center;
-                                                        margin: 10px 0;">
+                                                        font-size: 11px;
+                                                        margin-left: 0px;
+                                                        margin-right: 0px;
+                                                        margin-bottom: 0px;
+                                                        margin-top: 10px;">
                                                         *** !!! Seuls les comptes bancaires et mobile money au nom de MAEXI-TRADING sont validés pour recevoir les paiements. !!! ***
                                                     </p>
-                                                    <p style="                                    
+                                                    <p style="
+                                                        margin: 0;
+                                                        font-size: 12px;                             
                                                         text-align: center;">
                                                         MVOLA : 038 65 295 41 - ORANGE MONEY : 233274
                                                     </p>
