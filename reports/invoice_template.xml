@@ -33,11 +33,11 @@
         <template id="invoice_template">
             <t t-call="web.basic_layout">
                 <t t-foreach="docs" t-as="doc">
-                    <div class="page" style="font-size: 10pt;">
+                    <div class="page" style="font-size: 9pt;">
                         <t t-if="doc.move_type == 'out_invoice'">
                             <!-- Render the invoice content -->
-                            <div class="row" style="height: 200px;">
-                                <div class="col-auto col-8 mw-100 mb-2">
+                            <div class="row">
+                                <div class="col-auto col-8 mw-100 mb-2" style="width: 48%;">
                                     <div class="row mt-4 mb-4" style="border: 2px solid black; border-radius: 15px; margin-right: 10px; text-align: center;">
                                         <h2 id="invoice_header">FACTURE</h2>
                                     </div>
@@ -49,90 +49,110 @@
                                         </div>
                                         <div class="col-auto col-8 mw-100 mb-2">
                                             <p>
-                                                Date : <t t-esc="doc.invoice_date" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/><br/>
-                                                Numero : <span style="padding: 8px; text-align: left; font-weight: bold;"><t t-esc="doc.name"/></span><br/>
-                                                Commande : 
-                                                    <t t-if="doc.invoice_origin">
-                                                        <t t-esc="doc.invoice_origin"/>
-                                                    </t>
-                                                <br/>
-                                                Bon de livraison : 
-                                                    <t t-if="doc.invoice_origin">
-                                                        <t t-esc="doc.get_stock_picking()"/>
-                                                    </t>
-                                                <br/>
-                                                Devis : 
-                                                    <t t-if="doc.ref">
-                                                        <t t-esc="doc.ref"/>
-                                                    </t>
-                                                    <t t-elif="doc.invoice_origin">
-                                                        <t t-esc="doc.invoice_origin"/>
-                                                    </t>
+                                                <table style="border: 0;">
+                                                    <tr style="line-height: 20px;">
+                                                        <td style="border: 0px solid transparent;">Date </td><td style="border: 0px solid transparent;"> : <t t-esc="doc.invoice_date" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/></td>
+                                                    </tr>
+                                                    <tr style="line-height: 20px;">
+                                                        <td style="border: 0px solid transparent;">Numero </td><td style="border: 0px solid transparent; font-size: 11pt;"> : <span style="text-align: left; font-weight: bolder;"><t t-esc="doc.name"/></span></td>
+                                                    </tr>
+                                                    <tr style="line-height: 20px;">
+                                                        <td style="border: 0px solid transparent;">Commande </td>
+                                                        <td style="border: 0px solid transparent;">
+                                                             : <t t-if="doc.invoice_origin">
+                                                                <t t-esc="doc.invoice_origin"/>
+                                                            </t>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="line-height: 20px;">
+                                                        <td style="border: 0px solid transparent;">Bon de livraison </td>
+                                                        <td style="border: 0px solid transparent;">
+                                                             : <t t-if="doc.invoice_origin">
+                                                                <t t-esc="doc.get_stock_picking()"/>
+                                                            </t>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="line-height: 20px;">
+                                                        <td style="border: 0px solid transparent;">Devis </td>
+                                                        <td style="border: 0px solid transparent;">
+                                                             : <t t-if="doc.ref">
+                                                                <t t-esc="doc.ref"/>
+                                                            </t>
+                                                            <t t-elif="doc.invoice_origin">
+                                                                <t t-esc="doc.invoice_origin"/>
+                                                            </t>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-auto col-4 mw-100 mb-2"
-                                    style="border: 2px solid black; border-radius: 15px; padding: 5px;">
-                                    <p>
-                                        Doit : <strong><t t-esc="doc.partner_id.name"/></strong><br/>
-                                        NIF : <t t-esc="doc.partner_id.nif"/><br/>
-                                        STAT : <t t-esc="doc.partner_id.stat"/><br/>
-                                        RC : <t t-esc="doc.partner_id.rcs"/><br/>
-                                        CIF : 
-                                            <t t-if="doc.partner_id.code_fisc"> 
-                                                <t t-esc="doc.partner_id.code_fisc"/> DU 
-                                                <t t-esc="doc.partner_id.date_code_fisc" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
-                                            </t>
-                                        <br/>
-                                        <p style="text-align: center;"> *** ASSUJETI A LA TVA ***</p>
-                                        <t t-esc="doc.partner_id.street"/><br/>
-                                        <t t-esc="doc.partner_id.street2"/>
-                                    </p>
+                                    style="border: 2px solid black; border-radius: 15px; padding: 5px; width: 50%;">
+                                        <table style="border: 0; width: 100%;">
+                                            <tr style="padding-bottom: 20px;">
+                                                <td style="border: 0px solid transparent; width: 23%;"><span>Doit : </span></td><td style="border: 0px solid transparent;"><strong style="font-size: 14pt; text-align: center;"><t t-esc="doc.partner_id.name"/></strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 0px solid transparent;"><u><strong>NIF :</strong></u></td><td style="border: 0px solid transparent;"><t t-esc="doc.partner_id.nif"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 0px solid transparent;"><u><strong>STAT :</strong></u></td><td style="border: 0px solid transparent;"><t t-esc="doc.partner_id.stat"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 0px solid transparent;"><u><strong>RC :</strong></u></td><td style="border: 0px solid transparent;"><t t-esc="doc.partner_id.rcs"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 0px solid transparent;"><u><strong>CIF :</strong></u></td>
+                                                <td style="border: 0px solid transparent;"> 
+                                                    <t t-if="doc.partner_id.code_fisc"> 
+                                                        <t t-esc="doc.partner_id.code_fisc"/> DU 
+                                                        <t t-esc="doc.partner_id.date_code_fisc" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div style="text-align: center;"> *** ASSUJETI A LA TVA ***</div>
+                                        <t t-esc="doc.partner_id.street"/> <t t-esc="doc.partner_id.street2"/><br/><br/>
+                                        <t t-esc="doc.partner_id.zip"/> <t t-esc="doc.partner_id.city"/>
                                 </div>
                             </div>
 
-                            <div class="row" style="margin-top: 0px; text-align: right; max-height: 25px;">
-                                <div class="col-auto col-3">
+                            <div class="row" style="margin-top: 0px; text-align: right; font-size: 7pt;">
+                                <div class="col-auto col-8">
                                 </div>
-                                <div class="col-auto col-3">
-                                </div>
-                                <div class="col-auto col-3" style="font-size: 10px;">
+                                <div class="col-auto col-2">
                                     <div class="row">
-                                        <p>Créé par : 
+                                        Créé par : 
                                             <t t-if="doc.create_uid">
-                                                <t t-esc="doc.create_uid.name"/>
+                                                <strong t-esc="doc.create_uid.name"/>
                                             </t>
-                                        </p>
                                     </div>
                                 </div>
-                                <div class="col-auto col-3" style="font-size: 10px;">
+                                <div class="col-auto col-2">
                                     <div class="row">
-                                        <p>Le : <t t-esc="doc.create_date" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/></p>
+                                        Le : <strong t-esc="doc.create_date" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="margin-top: 0px; text-align: right; max-height: 25px;">
-                                <div class="col-auto col-3">
+                            <div class="row" style="margin-top: 0px; text-align: right; font-size: 7pt;">
+                                <div class="col-auto col-8">
                                 </div>
-                                <div class="col-auto col-3">
-                                </div>
-                                <div class="col-auto col-3" style="font-size: 10px;">
+                                <div class="col-auto col-2">
                                     <div class="row">
-                                        <p>Edité par : 
+                                        Edité par : 
                                             <t t-if="doc.write_uid">
-                                                <t t-esc="doc.write_uid.name"/>
+                                                <strong t-esc="doc.write_uid.name"/>
                                             </t>
-                                        </p>
                                     </div>
                                 </div>
-                                <div class="col-auto col-3" style="font-size: 10px;">
+                                <div class="col-auto col-2">
                                     <div class="row">
-                                        <p>Le :
+                                        Le :
                                             <t t-if="doc.write_date">
-                                                <t t-esc="doc.write_date" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
+                                                <strong t-esc="doc.write_date" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
                                             </t> 
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -141,12 +161,12 @@
                                 <table class="table table-borderless" style="border-collapse: collapse; border-bottom: 1px solid black; width: 100%;">
                                     <thead>
                                         <tr>
-                                            <th style="border: 1px solid black; padding: 10px;">Designation</th>
-                                            <th style="border: 1px solid black; padding: 10px;">PU</th>
-                                            <th style="border: 1px solid black; padding: 10px;">QTE</th>
-                                            <th style="border: 1px solid black; padding: 10px;">REM %</th>
-                                            <th style="border: 1px solid black; padding: 10px;">TVA %</th>
-                                            <th style="border: 1px solid black; padding: 10px;">MONTANT TTC</th>
+                                            <th style="border: 1px solid black; padding: 10px;"><strong>Designation</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px;"><strong>PU</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px;"><strong>QTE</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px;"><strong>REM %</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px;"><strong>TVA %</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px;"><strong>MONTANT TTC</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -299,18 +319,18 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="row" style="border: 1px solid black; height: 75px;">
+                                    <div class="row" style="border: 1px solid black; height: 70px;">
                                         <table class="table table-borderless">
                                             <tr style="page-break-inside: avoid;">
                                                 <td style="padding: 8px;
                                                     font-family: Arial, sans-serif;
-                                                    font-size: 10px;
+                                                    font-size: 6pt;
                                                     padding-top: 5px;
                                                     text-align: center;">
                                                     <p>
-                                                    Lot Près IVL 240 Ter - ANOSYVAHAKA - Antananarivo 101 - Bureaux ouverts de 7h45 à 16h15 du Lundi au Vendredi<br/>
-                                                    TEL : 033 57 044 973 / 033 50 202 62 - Email : maexi-trading@maexitrading.com<br/>
-                                                    RCS : 2003 B 00556 - STAT : 46496 11 2003 01 00 11 - NIF : 300 000 5552 - CIF : 0241275 DGIK du 03/07/23
+                                                    Lot Près IVL 240 Ter - ANOSIVAVAKA - Antananarivo 101 - Bureaux ouverts de 7h 45 à 16h 15 du Lundi au Vendredi<br/>
+                                                    TEL : 033 50 344 97/033 50 202 62 - Email : maexi-trading@maexitrading.com <br/>
+                                                    RCS : 2003 B00 555 - STAT : 46496 11 2003 01 00 11 - NIF : 300 000 5552 - CIF : 0241275 DGI-K du 03/07/23
                                                     </p>
                                                 </td>
                                             </tr>
