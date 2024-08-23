@@ -32,14 +32,15 @@
 
         <template id="invoice_template">
             <t t-call="web.basic_layout">
+                <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&amp;display=swap" rel="stylesheet"/>
                 <t t-foreach="docs" t-as="doc">
                     <div class="page" style="font-size: 9pt;">
                         <t t-if="doc.move_type == 'out_invoice'">
                             <!-- Render the invoice content -->
                             <div class="row">
                                 <div class="col-auto col-8 mw-100 mb-2" style="width: 48%;">
-                                    <div class="row mt-4 mb-4" style="border: 2px solid black; border-radius: 15px; margin-right: 10px; text-align: center;">
-                                        <h2 id="invoice_header">FACTURE</h2>
+                                    <div class="row mt-4 mb-4" style="border: 2px solid black; border-radius: 15px; margin-right: 10px; text-align: center; font-family: 'Courier Prime';">
+                                        <h2 id="invoice_header" style="font-weight: bolder !important;">FACTURE</h2>
                                     </div>
                                     <div class="row mt-4 mb-4">
                                         <div class="col-auto col-4 mw-50 mb-2">
@@ -51,10 +52,10 @@
                                             <p>
                                                 <table style="border: 0;">
                                                     <tr style="line-height: 20px;">
-                                                        <td style="border: 0px solid transparent;">Date </td><td style="border: 0px solid transparent;"> : <t t-esc="doc.invoice_date" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/></td>
+                                                        <td style="border: 0px solid transparent;">Date </td><td style="border: 0px solid transparent; font-family: 'Courier Prime';"> : <t t-esc="doc.invoice_date" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/></td>
                                                     </tr>
                                                     <tr style="line-height: 20px;">
-                                                        <td style="border: 0px solid transparent;">Numero </td><td style="border: 0px solid transparent; font-size: 11pt;"> : <span style="text-align: left; font-weight: bolder;"><t t-esc="doc.name"/></span></td>
+                                                        <td style="border: 0px solid transparent;">Numero </td><td style="border: 0px solid transparent; font-family: 'Courier Prime';"> : <span style="text-align: left; font-weight: bolder;"><t t-esc="doc.name"/></span></td>
                                                     </tr>
                                                     <tr style="line-height: 20px;">
                                                         <td style="border: 0px solid transparent;">Commande </td>
@@ -92,20 +93,20 @@
                                     style="border: 2px solid black; border-radius: 15px; padding: 5px; width: 50%;">
                                         <table style="border: 0; width: 100%;">
                                             <tr style="padding-bottom: 20px;">
-                                                <td style="border: 0px solid transparent; width: 23%;"><span>Doit : </span></td><td style="border: 0px solid transparent;"><strong style="font-size: 14pt; text-align: center;"><t t-esc="doc.partner_id.name"/></strong></td>
+                                                <td style="border: 0px solid transparent; width: 23%;"><span>Doit : </span></td><td style="border: 0px solid transparent; font-family: 'Courier Prime'; text-align: center;"><strong style="font-size: 14pt;"><t t-esc="doc.partner_id.name"/></strong></td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 0px solid transparent;"><u><strong>NIF :</strong></u></td><td style="border: 0px solid transparent;"><t t-esc="doc.partner_id.nif"/></td>
+                                                <td style="border: 0px solid transparent; text-align: center;"><u><strong>NIF :</strong></u></td><td style="border: 0px solid transparent; font-family: 'Courier Prime';"><t t-esc="doc.partner_id.nif"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 0px solid transparent;"><u><strong>STAT :</strong></u></td><td style="border: 0px solid transparent;"><t t-esc="doc.partner_id.stat"/></td>
+                                                <td style="border: 0px solid transparent; text-align: center;"><u><strong>STAT :</strong></u></td><td style="border: 0px solid transparent; font-family: 'Courier Prime';"><t t-esc="doc.partner_id.stat"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 0px solid transparent;"><u><strong>RC :</strong></u></td><td style="border: 0px solid transparent;"><t t-esc="doc.partner_id.rcs"/></td>
+                                                <td style="border: 0px solid transparent; text-align: center;"><u><strong>RC :</strong></u></td><td style="border: 0px solid transparent; font-family: 'Courier Prime';"><t t-esc="doc.partner_id.rcs"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 0px solid transparent;"><u><strong>CIF :</strong></u></td>
-                                                <td style="border: 0px solid transparent;"> 
+                                                <td style="border: 0px solid transparent; text-align: center;"><u><strong>CIF :</strong></u></td>
+                                                <td style="border: 0px solid transparent; font-family: 'Courier Prime';"> 
                                                     <t t-if="doc.partner_id.code_fisc"> 
                                                         <t t-esc="doc.partner_id.code_fisc"/> DU 
                                                         <t t-esc="doc.partner_id.date_code_fisc" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
@@ -113,9 +114,11 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <div style="text-align: center;"> *** ASSUJETI A LA TVA ***</div>
-                                        <t t-esc="doc.partner_id.street"/> <t t-esc="doc.partner_id.street2"/><br/><br/>
-                                        <t t-esc="doc.partner_id.zip"/> <t t-esc="doc.partner_id.city"/>
+                                        <div style="text-align: center; font-family: 'Courier Prime';"> *** ASSUJETI A LA TVA ***</div>
+                                        <div style="font-family: 'Courier Prime';">
+                                            <t t-esc="doc.partner_id.street"/> <t t-esc="doc.partner_id.street2"/><br/><br/>
+                                            <t t-esc="doc.partner_id.zip"/> <t t-esc="doc.partner_id.city"/>
+                                        </div>
                                 </div>
                             </div>
 
@@ -126,13 +129,13 @@
                                     <div class="row">
                                         Créé par : 
                                             <t t-if="doc.create_uid">
-                                                <strong t-esc="doc.create_uid.name"/>
+                                                <strong style="font-weight: bolder;" t-esc="doc.create_uid.name"/>
                                             </t>
                                     </div>
                                 </div>
                                 <div class="col-auto col-2">
                                     <div class="row">
-                                        Le : <strong t-esc="doc.create_date" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
+                                        Le : <strong style="font-weight: bolder" t-esc="doc.create_date" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +146,7 @@
                                     <div class="row">
                                         Edité par : 
                                             <t t-if="doc.write_uid">
-                                                <strong t-esc="doc.write_uid.name"/>
+                                                <strong style="font-weight: bolder;" t-esc="doc.write_uid.name"/>
                                             </t>
                                     </div>
                                 </div>
@@ -151,22 +154,22 @@
                                     <div class="row">
                                         Le :
                                             <t t-if="doc.write_date">
-                                                <strong t-esc="doc.write_date" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
+                                                <strong t-esc="doc.write_date" style="font-weight: bolder;" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
                                             </t> 
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="row" style="height: 300px;">
+                            <div class="row" style="height: 250px;">
                                 <table class="table table-borderless" style="border-collapse: collapse; border-bottom: 1px solid black; width: 100%;">
                                     <thead>
                                         <tr>
-                                            <th style="border: 1px solid black; padding: 10px;"><strong>Designation</strong></th>
-                                            <th style="border: 1px solid black; padding: 10px;"><strong>PU</strong></th>
-                                            <th style="border: 1px solid black; padding: 10px;"><strong>QTE</strong></th>
-                                            <th style="border: 1px solid black; padding: 10px;"><strong>REM %</strong></th>
-                                            <th style="border: 1px solid black; padding: 10px;"><strong>TVA %</strong></th>
-                                            <th style="border: 1px solid black; padding: 10px;"><strong>MONTANT TTC</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px; font-weight: bolder;"><strong>DESIGNATION</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px; font-weight: bolder;"><strong>PU</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px; font-weight: bolder;"><strong>QTE</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px; font-weight: bolder;"><strong>REM %</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px; font-weight: bolder;"><strong>TVA %</strong></th>
+                                            <th style="border: 1px solid black; padding: 10px; font-weight: bolder;"><strong>MONTANT TTC</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -191,7 +194,7 @@
                                             <table class="table table-borderless">
                                                 <tr>
                                                     <td style="padding: 8px;">
-                                                        <p><span style="text-decoration: underline; font-style: italic;">OBS.</span> : <span style="text-transform: uppercase;"><t t-esc="doc.narration"/></span></p>
+                                                        <p><span style="text-decoration: underline; font-style: italic; font-family: 'Courier Prime';">OBS.</span> : <span style="text-transform: uppercase;"><t t-esc="doc.narration"/></span></p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -201,14 +204,14 @@
                                                 <tr>
                                                     <td style="padding: 8px;">
                                                         <p>
-                                                            <span style="text-decoration: underline; font-style: italic;">Arrêtée à la somme de</span> : 
+                                                            <span style="text-decoration: underline; font-style: italic; font-family: 'Courier Prime';">Arrêtée à la somme de</span> : <br/>
                                                             <span style="text-align: left; font-weight: bold; font-size: 10pt;">
                                                                 <t t-esc="doc.number_to_words()"/> 
                                                                 <t t-esc="doc.currency_id.currency_unit_label"/>
                                                             </span>
                                                         </p>
-                                                        <p style="margin: 0; margin-top: 20px;"><span style="text-decoration: underline;">Mode de paiement</span> : <t t-esc="doc.get_payment_mode()"/></p>
-                                                        <div class="row" style="margin-bottom: 0;">
+                                                        <p style="margin: 0; margin-top: 20px;"><span style="text-decoration: underline; font-family: 'Courier Prime';">Mode de paiement</span> : <t t-esc="doc.get_payment_mode()"/></p>
+                                                        <div class="row" style="margin-bottom: 0; font-family: 'Courier Prime';">
                                                             <div class="col-auto col-6 mw-100 mb-2">
                                                                 <p><span style="text-decoration: underline;">Règlement</span> : <t t-esc="doc.invoice_payment_term_id.name"/></p>
                                                             </div>
@@ -242,7 +245,7 @@
                                                     
                                                 <tr>
                                                     <th style="padding: 8px;">H.T (non taxable)</th>
-                                                    <td style="text-align: right; padding-right: 10px;"><span t-esc="current_subtotal" t-options='{"widget": "float", "precision": 2}'/></td>
+                                                    <td style="text-align: right; padding-right: 10px;"><span  style="font-family: 'Courier Prime';" t-esc="current_subtotal" t-options='{"widget": "float", "precision": 2}'/></td>
                                                 </tr>
                                                 <tr>
                                                     <th style="padding: 8px;">+ H.T</th>
@@ -250,11 +253,11 @@
                                                 </tr>
                                                 <tr>
                                                     <th style="padding: 8px;">- REMISE</th>
-                                                    <td style="text-align: right; padding-right: 10px;"><span t-esc="current_discount_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                                                    <td style="text-align: right; padding-right: 10px;"><span style="font-family: 'Courier Prime';" t-esc="current_discount_total" t-options='{"widget": "float", "precision": 2}'/></td>
                                                 </tr>
                                                 <tr>
                                                     <th style="padding: 8px;">= NET H.T.</th>
-                                                    <td style="text-align: right; padding-right: 10px;"><span t-esc="current_net_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                                                    <td style="text-align: right; padding-right: 10px;"><span style="font-family: 'Courier Prime';" t-esc="current_net_total" t-options='{"widget": "float", "precision": 2}'/></td>
                                                 </tr>
                                                 <tr>
                                                     <th style="padding: 8px;">TVA (<span t-esc="current_tax"/>%)</th>
@@ -272,7 +275,7 @@
                                                     <td style="padding: 8px; text-align: right; font-weight: bold; font-size: 14pt;">
                                                         <!-- <span t-esc="tax_totals['formatted_amount_total_rounded']" t-if="'formatted_amount_total_rounded' in tax_totals"/>
                                                         <span t-esc="tax_totals['formatted_amount_total']" t-else=""/> -->
-                                                        <t t-esc="doc.amount_total"/> <t t-esc="doc.currency_id.name"/>
+                                                        <span t-esc="doc.amount_total" t-options='{"widget": "float", "precision": 2}'/> <span style="font-size: 10pt; font-family: 'Courier Prime';" t-esc="doc.currency_id.name"/>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -319,7 +322,7 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="row" style="border: 1px solid black; height: 70px;">
+                                    <div class="row" style="border: 1px solid black; border-bottom: 0px solid transparent; height: 70px;">
                                         <table class="table table-borderless">
                                             <tr style="page-break-inside: avoid;">
                                                 <td style="padding: 8px;
