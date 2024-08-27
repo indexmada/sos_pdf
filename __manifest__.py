@@ -5,6 +5,7 @@
     'depends': ['account', 'base', 'web'],
     'data': [
         'reports/invoice_template.xml',
+        'reports/layout.xml',
     ],
     'installable': True,
     'application': False,

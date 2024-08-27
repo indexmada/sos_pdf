@@ -11,7 +11,7 @@
             <field name="page_width">0</field>
             <field name="orientation">Portrait</field>
             <field name="margin_top">5</field>
-            <field name="margin_bottom">5</field>
+            <field name="margin_bottom">20</field>
             <field name="margin_left">5</field>
             <field name="margin_right">5</field>
             <field name="dpi">96</field>
@@ -40,7 +40,15 @@
                             <div class="row">
                                 <div class="col-auto col-8 mw-100 mb-2" style="width: 48%;">
                                     <div class="row mt-4 mb-4" style="border: 2px solid black; border-radius: 15px; margin-right: 10px; text-align: center; font-family: 'Courier Prime';">
-                                        <h2 id="invoice_header" style="font-weight: bolder !important;">FACTURE</h2>
+                                        <t t-if="doc.state == 'cancel'">
+                                            <h4 id="invoice_header" style="font-weight: bolder !important;">FACTURE ANNULÉ</h4>
+                                        </t>
+                                        <t t-elif="doc.state == 'draft'">
+                                            <h4 id="invoice_header" style="font-weight: bolder !important;">FACTURE BROUILLON</h4>
+                                        </t>
+                                        <t t-else="">
+                                            <h2 id="invoice_header" style="font-weight: bolder !important;">FACTURE</h2>
+                                        </t>
                                     </div>
                                     <div class="row mt-4 mb-4">
                                         <div class="col-auto col-4 mw-50 mb-2">
@@ -188,7 +196,7 @@
                             </div>
 
                             <!-- <div class="col-auto col-12 mw-100 mb-2" style="height: 300px;"> -->
-                                <div class="row" style="height: 290px; margin-bottom: 10px;">
+                                <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-auto col-8 mw-100 mb-2" style="border-left: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;">
                                         <div class="row" style="border: none;">                                
                                             <table class="table table-borderless">
@@ -283,9 +291,9 @@
                                     </div>
                                 </div>
                             <!-- </div> -->
-                            <div class="row" style="height: 230px;">
+                            <div class="row">
                                 <div class="col-auto col-12" style="border: 1px solid black;">
-                                    <div class="row" style="border: 1px solid black; height: 155px;">
+                                    <div class="row" style="border: 1px solid black;">
                                         <table class="table table-borderless">
                                             <tr style="page-break-inside: avoid;">
                                                 <td style="
@@ -322,29 +330,14 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="row" style="border: 1px solid black; border-bottom: 0px solid transparent; height: 70px;">
-                                        <table class="table table-borderless">
-                                            <tr style="page-break-inside: avoid;">
-                                                <td style="padding: 8px;
-                                                    font-family: Arial, sans-serif;
-                                                    font-size: 6pt;
-                                                    padding-top: 5px;
-                                                    text-align: center;">
-                                                    <p>
-                                                    Lot Près IVL 240 Ter - ANOSIVAVAKA - Antananarivo 101 - Bureaux ouverts de 7h 45 à 16h 15 du Lundi au Vendredi<br/>
-                                                    TEL : 033 50 344 97/033 50 202 62 - Email : maexi-trading@maexitrading.com <br/>
-                                                    RCS : 2003 B00 555 - STAT : 46496 11 2003 01 00 11 - NIF : 300 000 5552 - CIF : 0241275 DGI-K du 03/07/23
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
+                            <!-- Move to footer -->
                         </t>
                         <t t-else="">
                             <p>Ce rapport est uniquement disponible pour les factures clients.</p>
                         </t>
+                        <p style="page-break-before:always;"/>
                     </div>
                 </t>
             </t>

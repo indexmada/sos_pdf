@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="basic_layout_inherit" inherit_id="web.basic_layout">
+            <xpath expr="//div[hasclass('article')]" position="after">
+                <div t-attf-class="footer o_standard_footer o_company_1_layout">
+                  <div class="text-center">
+                        <div class="row" style="margin-bottom: 5px;">
+                            <table class="table table-borderless">
+                                <tr style="page-break-inside: avoid;">
+                                    <td style="padding: 8px;
+                                        font-family: Arial, sans-serif;
+                                        font-size: 7pt;
+                                        text-align: center;
+                                        border: 1px solid black;">
+                                        <div style="line-height: 12pt;">
+                                            Lot Près IVL 240 Ter - ANOSIVAVAKA - Antananarivo 101 - Bureaux ouverts de 7h 45 à 16h 15 du Lundi au Vendredi<br/>
+                                            TEL : 033 50 344 97/033 50 202 62 - Email : maexi-trading@maexitrading.com <br/>
+                                            RCS : 2003 B00 555 - STAT : 46496 11 2003 01 00 11 - NIF : 300 000 5552 - CIF : 0241275 DGI-K du 03/07/23
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                  </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>
