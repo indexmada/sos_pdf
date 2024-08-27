@@ -28,7 +28,11 @@ class InheritAccountMove(models.Model):
         """ return invoice stock picking """
         origin_name = self.invoice_origin
         sale_order = self.env['sale.order'].search([('name', '=', str(origin_name).strip())])
-        return sale_order.picking_ids.name
+        picking_list = []
+        for picking in sale_order.picking_ids:
+            picking_list.append(picking.name)
+        # return sale_order.picking_ids.name
+        return str(picking_list).replace('[', '').replace(']', '').replace("'", "")
     
     def get_payment_mode(self):
         """ return payment mode related to the invoice """
