@@ -307,7 +307,7 @@
                                                     padding-bottom: 5px;
                                                     font-weight: bold;
                                                     font-size: 10px;">
-                                                    <p>
+                                                    <!-- <p>
                                                     Conditions générales : <br/>
                                                     - Toutes les réclamations concernant vos commandes doivent se faire dans les 24h après réception de vos colis. Au-delà de ce délai, elles seront considérées comme irrécouvrables.<br/>
                                                     - Les colis doivent impérativement être retournés dans un délai de 30 jours pour la désinsectisation.<br/>
@@ -328,7 +328,8 @@
                                                         font-size: 12px;                             
                                                         text-align: center;">
                                                         MVOLA : 038 65 295 41 - ORANGE MONEY : 233274
-                                                    </p>
+                                                    </p> -->
+                                                    <t t-raw="doc.company_id.invoice_terms"/>
                                                 </td>
                                             </tr>
                                         </table>

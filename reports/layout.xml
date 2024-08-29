@@ -17,7 +17,10 @@
                                             <!-- Lot Près IVL 240 Ter - ANOSIVAVAKA - Antananarivo 101 - Bureaux ouverts de 7h 45 à 16h 15 du Lundi au Vendredi<br/>
                                             TEL : 033 50 344 97/033 50 202 62 - Email : maexi-trading@maexitrading.com <br/>
                                             RCS : 2003 B00 555 - STAT : 46496 11 2003 01 00 11 - NIF : 300 000 5552 - CIF : 0241275 DGI-K du 03/07/23 -->
-                                            <t t-raw="o.company_id.invoice_terms"/>
+                                            <t t-set="comp" t-value="o.company_id"/>
+                                            <t t-esc="comp.street"/> - <t t-esc="comp.street2"/> - <t t-esc="comp.city"/> <t t-esc="comp.zip"/><br/>
+                                            TEL : <t t-esc="comp.phone"/> / <t t-esc="comp.mobile"/> - Email : <t t-esc="comp.email"/><br/>
+                                            RCS : <t t-esc="comp.rcs"/> - STAT : <t t-esc="comp.stat"/> - NIF : <t t-esc="comp.nif"/> - CIF : <t t-esc="comp.code_fisc"/> du <t t-esc="comp.date_code_fisc" t-options="{'widget': 'date', 'format': 'dd/MM/yyyy'}"/>
                                         </div>
                                     </td>
                                 </tr>
