@@ -204,9 +204,9 @@
                             </div>
 
                             <!-- <div class="col-auto col-12 mw-100 mb-2" style="height: 300px;"> -->
-                                <div class="row" style="margin-bottom: 10px;">
+                                <div class="row" style="margin-bottom: 10px; max-height: 290px;">
                                     <div class="col-auto col-8 mw-100 mb-2" style="border-left: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;">
-                                        <div class="row" style="border: none;">                                
+                                        <div class="row" style="border: none; height: 175px; overflow: hidden;">                                
                                             <table>
                                                 <tr>
                                                     <td style="padding: 8px; vertical-align: middle; border: 0px solid transparent;">
