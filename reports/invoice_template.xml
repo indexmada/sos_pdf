@@ -193,7 +193,10 @@
                                                 <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: right; padding-right: 10px; padding-top: 10px;"><t t-esc="line.quantity" t-options='{"widget": "float", "precision": 0}'/></td>
                                                 <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: center; padding-left: 10px; padding-top: 10px;"><t t-esc="line.discount" t-options='{"widget": "float", "precision": 0}'/></td>
                                                 <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: center; padding-left: 10px; padding-top: 10px;"><t t-if="line.tax_ids" t-esc="line.tax_ids[0].amount" t-options='{"widget": "float", "precision": 0}'/></td>
-                                                <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: right; padding-right: 10px; padding-top: 10px;"><t t-esc="line.price_subtotal + (line.price_subtotal * ((line.tax_ids[0].amount) if line.tax_ids else 1 / 100)) + (line.price_subtotal * (line.discount / 100))" t-options='{"widget": "float", "precision": 2}'/></td>
+                                                <td style="border-left: 1px solid black; border-top: none;  border-bottom: none; border-right: 1px solid black; text-align: right; padding-right: 10px; padding-top: 10px;">
+                                                    <!-- <t t-esc="line.price_subtotal + (line.price_subtotal * ((line.tax_ids[0].amount) if line.tax_ids else 1 / 100)) + (line.price_subtotal * (line.discount / 100))" t-options='{"widget": "float", "precision": 2}'/> -->
+                                                    <t t-esc="line.price_subtotal + (line.price_subtotal * (line.tax_ids[0].amount / 100)) + (line.price_subtotal * (line.discount / 100))" t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
                                             </tr>
                                         </t>
                                     </tbody>
