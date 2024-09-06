@@ -139,7 +139,7 @@
                                 <div class="col-auto col-6">
                                 </div>
                                 <div class="col-auto col-3">
-                                    <div class="row">
+                                    <div class="row align-items-center" style="display: flex; justify-content: flex-end;">
                                         Créé par : 
                                             <t t-if="doc.create_uid">
                                                 <strong style="font-weight: bolder;" t-esc="doc.create_uid.name"/>
@@ -147,7 +147,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto col-3">
-                                    <div class="row">
+                                    <div class="row align-items-center" style="display: flex; justify-content: flex-end;">
                                         Le : <strong style="font-weight: bolder" t-esc="doc.create_date" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@
                                 <div class="col-auto col-6">
                                 </div>
                                 <div class="col-auto col-3">
-                                    <div class="row">
+                                    <div class="row align-items-center" style="display: flex; justify-content: flex-end;">
                                         Edité par : 
                                             <t t-if="doc.write_uid">
                                                 <strong style="font-weight: bolder;" t-esc="doc.write_uid.name"/>
@@ -164,7 +164,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto col-3">
-                                    <div class="row">
+                                    <div class="row align-items-center" style="display: flex; justify-content: flex-end;">
                                         Le :
                                             <t t-if="doc.write_date">
                                                 <strong t-esc="doc.write_date" style="font-weight: bolder;" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
