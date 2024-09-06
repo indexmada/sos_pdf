@@ -206,11 +206,11 @@
                             <!-- <div class="col-auto col-12 mw-100 mb-2" style="height: 300px;"> -->
                                 <div class="row" style="margin-bottom: 10px; max-height: 290px;">
                                     <div class="col-auto col-8 mw-100 mb-2" style="border-left: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;">
-                                        <div class="row" style="border: none; max-height: 175px; overflow: hidden;">                                
+                                        <div class="row" style="border: none; height: 100px;">                                
                                             <table>
                                                 <tr>
                                                     <td style="padding: 8px; vertical-align: middle; border: 0px solid transparent;">
-                                                        <p><span style="text-decoration: underline; font-style: italic; font-family: 'Courier Prime';">OBS.</span> : <span t-if="doc.narration" style="text-transform: uppercase;"><t t-esc="doc.narration"/></span><span t-else=""><br/></span></p>
+                                                        <p><span style="text-decoration: underline; font-style: italic; font-family: 'Courier Prime';">OBS.</span> : </p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -284,9 +284,9 @@
                                             <table>
                                                 <!--Tax totals-->
                                                 <t t-set="tax_totals" t-value="doc.tax_totals"/>
-                                                <tr>
-                                                    <th style="padding: 8px; text-align: left; vertical-align: middle; border: 0px solid transparent;">TTC</th>
-                                                    <td style="padding: 8px; text-align: right; font-weight: bold; font-size: 14pt; vertical-align: middle; border: 0px solid transparent;">
+                                                <tr style="text-align: center;">
+                                                    <th style="padding: 8px; text-align: center; vertical-align: middle; border: 0px solid transparent;">TTC</th>
+                                                    <td style="padding: 8px; text-align: center; font-weight: bold; font-size: 14pt; vertical-align: middle; border: 0px solid transparent;">
                                                         <!-- <span t-esc="tax_totals['formatted_amount_total_rounded']" t-if="'formatted_amount_total_rounded' in tax_totals"/>
                                                         <span t-esc="tax_totals['formatted_amount_total']" t-else=""/> -->
                                                         <span t-esc="doc.amount_total" t-options='{"widget": "float", "precision": 2}'/> <span style="font-size: 10pt; font-family: 'Courier Prime';" t-esc="doc.currency_id.name"/>
