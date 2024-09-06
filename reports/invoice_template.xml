@@ -136,9 +136,9 @@
                             </div>
 
                             <div class="row" style="margin-top: 0px; text-align: right; font-size: 7pt;">
-                                <div class="col-auto col-8">
+                                <div class="col-auto col-6">
                                 </div>
-                                <div class="col-auto col-2">
+                                <div class="col-auto col-3">
                                     <div class="row">
                                         Créé par : 
                                             <t t-if="doc.create_uid">
@@ -146,16 +146,16 @@
                                             </t>
                                     </div>
                                 </div>
-                                <div class="col-auto col-2">
+                                <div class="col-auto col-3">
                                     <div class="row">
                                         Le : <strong style="font-weight: bolder" t-esc="doc.create_date" t-options='{"widget": "datetime", "format": "dd/mm/YY HH:MM:SS"}'/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 0px; text-align: right; font-size: 7pt;">
-                                <div class="col-auto col-8">
+                                <div class="col-auto col-6">
                                 </div>
-                                <div class="col-auto col-2">
+                                <div class="col-auto col-3">
                                     <div class="row">
                                         Edité par : 
                                             <t t-if="doc.write_uid">
@@ -163,7 +163,7 @@
                                             </t>
                                     </div>
                                 </div>
-                                <div class="col-auto col-2">
+                                <div class="col-auto col-3">
                                     <div class="row">
                                         Le :
                                             <t t-if="doc.write_date">
